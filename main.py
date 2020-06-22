@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import ctypes
-import models
+from models.game import Game
 import sys
 import sdl2
 import sdl2.ext
@@ -8,17 +8,10 @@ import time
 
 
 def run():
-    sdl2.ext.init()
-    window = sdl2.ext.Window("CoderZ", size=(800, 600))
-    window.show()
-    running = True
-    while running:
-        events = sdl2.ext.get_events()
-        for event in events:
-            if event.type == sdl2.SDL_QUIT:
-                running = False
-                break
-        window.refresh()
+    game = Game("Coderz", (1000, 800))
+    while game.running:
+        game.handle()
+        game.update()
     return 0
 
 
