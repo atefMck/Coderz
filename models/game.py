@@ -2,6 +2,8 @@
 import sdl2
 import sdl2.ext
 
+WHITE = sdl2.ext.Color(255, 255, 255)
+
 
 class Game():
     """docstring for BaseModel"""
@@ -24,5 +26,8 @@ class Game():
         events = sdl2.ext.get_events()
         for event in events:
             if event.type == sdl2.SDL_QUIT:
-                game.running = False
+                self.running = False
                 break
+
+    def quit(self):
+        sdl2.ext.quit()
