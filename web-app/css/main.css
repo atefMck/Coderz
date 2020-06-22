@@ -1,0 +1,97 @@
+.all{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/wallpper.jpg");
+    position: absolute; top:0; left:0;
+
+}
+.box{
+    width:40%;
+    height:500px;
+    border:1.5px solid blue;
+    color: #ccff00;
+    margin:0 auto;
+    text-align:center;
+    border-radius: 4%;
+    font-size:200%;
+    margin-top:10%;
+    background-color: black;
+    opacity: 0.8;
+    font-family: pixel;
+}
+@font-face{
+font-family:pixel;
+src:url("../font/Pixeled.ttf")
+}
+
+.page{
+    font-size:125%;
+    align-content: center;
+    margin:0 auto;
+    width: 1200px;
+    position: absolute; top:0; left:0;
+    color: #ccff00;
+    text-align:center;
+    display: inline-block;
+    margin-top: 90px;
+    font-family:pixel;
+}
+.page .p:hover{
+ width: 1250%;   
+}
+
+.page p{
+    display: inline;
+    margin-left:15px;
+    background-color: black;
+    border-radius: 10%;
+    border:1.5px solid blue;
+}
+
+
+
+
+.progress-circle {
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8rem;
+    margin: 12rem 2rem 0;
+    position: relative;
+    width: 8rem;
+  }
+  .progress-circle:before {
+    -webkit-box-align: center;
+            align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 1;
+    content: attr(data-progress) '%';
+    display: -webkit-box;
+    display: flex;
+    font-size: 1.5rem;
+    -webkit-box-pack: center;
+            justify-content: center;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: 1rem;
+    bottom: 1rem;
+    -webkit-transition: -webkit-transform 0.2s ease;
+    transition: -webkit-transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+  }
+  .progress-circle:after {
+    background-color: #0083ff;
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
+  .progress-circle:hover:before,
+  .progress-circle:focus:before {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
