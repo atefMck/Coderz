@@ -18,7 +18,12 @@
     background-color: black;
     opacity: 0.8;
     font-family: pixel;
+<<<<<<< HEAD
+
+} 
+=======
 }
+>>>>>>> f489df63c8c07665b228641ddba4be6133ffec7b
 .game{
     width: 100%;
     height: 200px;
