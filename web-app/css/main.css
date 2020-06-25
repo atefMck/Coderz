@@ -5,6 +5,18 @@
     position: absolute; top:0; left:0;
 
 }
+svg {
+  display: block;
+  margin: 0 auto;
+}
+
+path {
+  fill: none;
+  stroke: white;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .box{
     width:40%;
     height:600px;
@@ -18,12 +30,7 @@
     background-color: black;
     opacity: 0.8;
     font-family: pixel;
-<<<<<<< HEAD
-
-} 
-=======
 }
->>>>>>> f489df63c8c07665b228641ddba4be6133ffec7b
 .game{
     width: 100%;
     height: 200px;
