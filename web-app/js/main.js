@@ -105,7 +105,7 @@ function atef() {
   {id: '#path5361', d: 'm 345.58697,65.003235 -11.4224,41.168085 -12.97046,-43.6773 z'},
 ];
 
-var timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: true });
+var timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: true, duration: 10 });
 
 paths.forEach(function(path, index) {
   timeline
