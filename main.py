@@ -1,27 +1,29 @@
 #!/usr/bin/python3
-import ctypes
 from models.game import Game
-import sys
-import sdl2
-import sdl2.ext
+from models.entities.player import Player
+
 import time
+
+
+import pygame
+from pygame.locals import *
 
 fps = 60
 frameDelay = 1000 // fps
 
 
 def run():
+    pygame.init()
     game = Game("Coderz", (1000, 800))
+
+    P1 = Player()
+
     while game.running:
-        frameStart = sdl2.SDL_GetTicks()
+        pygame.draw.circle(game.surface, 0, (200, 50), 30)
+        game.update(P1)
         game.handle()
-        game.update()
-        frameTime = sdl2.SDL_GetTicks() - frameStart
-        if frameDelay > frameTime:
-            sdl2.SDL_Delay(frameDelay - frameTime)
-    game.quit()
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(run())
+    run()
