@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-from models.game import Game
-from models.entities.player import Player
+from game.game import Game
+from game.map.map import Map
+from game.entities.player import Player
 
 import time
 
@@ -14,12 +15,24 @@ frameDelay = 1000 // fps
 
 def run():
     pygame.init()
-    game = Game("Coderz", (1000, 800))
+    game = Game("Coderz", (1024, 764))
 
     P1 = Player()
+    level = Map(1000, 800, 64)
+    level.mapRandom()
+    level.mapStructure()
+    level.mapBuild()
+    level.mapPrint()
+
+    all_sprites = pygame.sprite.Group()
+    all_sprites.add(P1)
 
     while game.running:
-        pygame.draw.circle(game.surface, 0, (200, 50), 30)
+        game.displaysurface.fill(0)
+        level.mapBuild()
+        for entity in all_sprites:
+            game.displaysurface.blit(entity.image, entity.rect)
+            entity.move()
         game.update(P1)
         game.handle()
     return 0

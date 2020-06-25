@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from models.entities.player import Player
+from game.entities.player import Player
 
 import sys
 
@@ -14,14 +14,13 @@ class Game():
         self.__name = name
         self.__size = size
         self.running = True
-        self.surface = pygame.display.set_mode(self.__size)
+        self.displaysurface = pygame.display.set_mode(self.__size)
         pygame.display.set_caption(self.__name)
         FPS = pygame.time.Clock()
         FPS.tick(60)
 
     def update(self, entity):
         entity.update()
-        entity.draw(self.surface)
         pygame.display.update()
 
     def handle(self):
