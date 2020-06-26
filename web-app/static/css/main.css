@@ -10,6 +10,11 @@ body {
 }
 
 .texture {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-image: url("../images/texture.png");
@@ -50,7 +55,7 @@ body {
 }
 
 .mainbox ul li:last-child {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .mainbox ul li p{
@@ -72,4 +77,50 @@ body {
     color: white;
     font-size: 12px;
     font-family: Pixeled;
+}
+
+#response {
+    margin: 10px;
+    font-size: 12;
+}
+
+#response p {
+    margin: 0;
+    font-size: 9px;
+}
+
+.leaderboard ul li {
+    height: 46px;
+    border-bottom: solid 2px #f5426f;
+    text-align: left;
+}
+
+.leaderboard ul li:first-child {
+    text-align: center;
+    height: 80px;
+}
+
+.leaderboard ul li h1 {
+    margin: 0;
+}
+
+.leaderboard ul li p {
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: -5px;
+}
+.leaderboard ul li span {
+    float: right;
+    margin-right: 25px;
+    color: #fcdb03;
+    text-align: right;
+    display: inline-block;
+}
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
 }

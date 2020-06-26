@@ -15,10 +15,13 @@
 </head>
 <body>
     <div class="texture">
-        <p>{{ response }}</p>
     <form method="POST">
+        <ul>
+            <li>Home</li>
+            <li>Leaderboard</li>
+        </ul>
         <div class="mainbox">
-            <ul>
+            <ul class="active">
                 <li><h1>HolberTun</h1></li>
                 <li>
                     <p>Email:</p>
@@ -28,6 +31,7 @@
                     <p>Password</p>
                     <input type="password" id="password" name="password">
                 </li>
+                <li id="response"><p>{{ response }}</p></li>
                 <li>
                     <button name=login>LOGIN</button>
                     <button name=signup>SIGN UP</button>
@@ -35,6 +39,5 @@
             </ul>         
         </div> 
     </form>
-    </div>
 </body>
 </html>
