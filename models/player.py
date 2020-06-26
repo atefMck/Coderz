@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Player = declarative_base()
 
 
-class Player(pygame.sprite.Sprite):
+class User():
 
     def __init__(self, name="", texpath=""):
         self.name = None
