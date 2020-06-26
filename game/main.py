@@ -55,7 +55,6 @@ class Game:
         self.wall_img = pg.transform.scale(self.wall_img, (TILESIZE, TILESIZE))
 
     def new(self):
-        # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
         self.floors = pg.sprite.Group()
         self.walls = pg.sprite.Group()
@@ -74,10 +73,9 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
 
     def run(self):
-        # game loop - set self.playing = False to end the game
         self.playing = True
         while self.playing:
-            self.dt = self.clock.tick(FPS) / 1000.0  # fix for Python 2.x
+            self.dt = self.clock.tick(FPS) / 1000.0
             self.events()
             self.update()
             self.draw()
@@ -87,10 +85,8 @@ class Game:
         sys.exit()
 
     def update(self):
-        # update portion of the game loop
         self.all_sprites.update()
         self.camera.update(self.player)
-        # mobs hit player
         hits = pg.sprite.spritecollide(
             self.player, self.mobs, False, collide_hit_rect)
         for hit in hits:
@@ -100,7 +96,6 @@ class Game:
                 self.playing = False
         if hits:
             self.player.pos += vec(MOB_KNOCKBACK, 0).rotate(-hits[0].rot)
-        # bullets hit mobs
         hits = pg.sprite.groupcollide(self.mobs, self.bullets, False, True)
         for hit in hits:
             hit.health -= BULLET_DAMAGE
@@ -115,19 +110,15 @@ class Game:
     def draw(self):
         pg.display.set_caption("{:.2f}".format(self.clock.get_fps()))
         self.screen.fill(BGCOLOR)
-        # self.draw_grid()
         for sprite in self.all_sprites:
             if isinstance(sprite, Mob):
                 sprite.draw_health()
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        # pg.draw.rect(self.screen, WHITE, self.player.hit_rect, 2)
-        # HUD functions
         draw_player_health(self.screen, 10, 10,
                            self.player.health / PLAYER_HEALTH)
         pg.display.flip()
 
     def events(self):
-        # catch all events here
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.quit()
@@ -142,7 +133,6 @@ class Game:
         pass
 
 
-# create the game object
 g = Game()
 level = MapGenerator()
 level.map_random()
