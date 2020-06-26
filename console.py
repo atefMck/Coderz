@@ -1,24 +1,25 @@
 #!/usr/bin/python3
+import json
+from shlex import split
+from datetime import datetime
+from models.player import User
+from models.player import Player
 """This is the console for COderz"""
 import cmd
-from models.player import Player
-from datetime import datetime
-from shlex import split
-import json
 
 
 def check():
-    with open("data.json", "r") as f:
+
+   with open("./web-app/data.json", "r") as f:
         s = f.read()
-        if (s == ""):
-            return True
-        else:
-            return False
+   if (s == ""):
+        return True
+    else:
+        return False
 
 
 class Coderz(cmd.Cmd):
     prompt = "(Coderz) "
-    all_classes = {"Player"}
 
     def emptyline(self):
         pass
@@ -43,12 +44,13 @@ class Coderz(cmd.Cmd):
         except:
             print("Usage: create Player <GamerTag> <email> <Password>")
 
-        with open("data.json", 'r') as f:
+        with open("./web-app/data.json", 'r') as f:
             jsondata = (f.read())
             jsn = '{{"data": [{}]}}'.format(jsondata)
             jsn = json.loads(jsn)
             for i in jsn["data"]:
                 for k, v in i.items():
+                    print(i["name"])
                     if i["name"] == my_list[1]:
                         print("already existing name")
                         exist = False
@@ -58,7 +60,7 @@ class Coderz(cmd.Cmd):
 
         checks = check()
         if exist:
-            with open("data.json", "a") as f:
+            with open("./web-app/data.json", "a") as f:
                 if checks:
                     f.write("{}".format(json.dumps(player.__dict__)))
                 else:
@@ -67,7 +69,8 @@ class Coderz(cmd.Cmd):
     def do_show(self, line):
         my_list = line.split(" ")
         if len(my_list) == 1:
-            with open("data.json", 'r') as f:
+
+            with open("./web-app/data.json", 'r') as f:
                 print(json.loads('{{"data": [{}]}}'.format(f.read())))
 
 
