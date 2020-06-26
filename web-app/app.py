@@ -28,7 +28,6 @@ def signup(data):
 def login():
     if request.form:
         data = request.form.to_dict()
-        print(data)
         if "signup" in data:
             response = signup(data)
             return render_template(
