@@ -5,6 +5,8 @@ starts a Flask web application
 from flask import Flask, render_template, request
 import json
 app = Flask(__name__)
+
+
 def signup(data):
     if not data:
         return False
@@ -21,17 +23,20 @@ def signup(data):
         jsonDB.close()
         return ('success')
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.form:
         data = request.form.to_dict()
+        print(data)
         if "signup" in data:
             response = signup(data)
             return render_template(
                 'index.html',
                 response=response
-            ) 
+            )
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
