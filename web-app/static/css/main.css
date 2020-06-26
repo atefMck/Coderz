@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+}
+
+@font-face {
+    font-family: Pixeled;
+    src: url("../fonts/Pixeled.otf");
+}
+
+.mainbox {
+    border: solid 2px black;
+    text-align: center;
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -250px;
+    font-family: Pixeled;
+
+}
+
+.mainbox ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mainbox ul li {
+    margin-top: 50px;
+}
+
+.mainbox ul li h1 {
+    margin-top: -10px;
+}
+
+.mainbox ul li p {
+    margin-bottom: -1px;
+}
