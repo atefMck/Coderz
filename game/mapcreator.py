@@ -65,7 +65,7 @@ class MapGenerator():
                         self.mapmatrix[i][j] = 4
                         break
                 except:
-                    pass
+                    self.mapmatrix[i][j] = 2
             break
 
     def map_to_file(self):
