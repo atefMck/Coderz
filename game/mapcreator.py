@@ -4,35 +4,35 @@ import os
 from datetime import datetime
 import numpy as np
 import random
-
-import pygame
-from pygame.locals import *
+from settings import *
 
 
-class Map():
+class MapGenerator():
 
-    def __init__(self, width, height, tilesize):
-        self.width = width
-        self.height = height
-        self.tilesize = tilesize
-        self.tileset = ["tile_void.png", "tile.png",
-                        "tile_wall.png", "tile_hole.png", "tile_unknown.png"]
-        self.wtile = self.width // self.tilesize + 1
-        self.htile = self.height // self.tilesize + 1
-        self.mapmatrix = [[0 for i in range(self.htile)]
-                          for i in range(self.wtile)]
-        self.surface = pygame.Surface((self.width, self.height))
+    def __init__(self):
+        self.width = WIDTH
+        self.height = HEIGHT
+        self.tilesize = TILESIZE
+        self.gridwidth = GRIDWIDTH
+        self.gridheight = GRIDHEIGHT
+        self.mapmatrix = [[0 for i in range(self.gridwidth)]
+                          for i in range(self.gridheight)]
+        self.fpath = "map.txt"
 
-    def mapRandom(self):
-        noise = generate_perlin_noise_2d((self.wtile, self.htile), (1, 1))
+    def map_random(self):
+        noise = generate_perlin_noise_2d(
+            (self.gridwidth, self.gridheight), (1, 1))
         for i in range(len(noise)):
             for j in range(len(noise[i])):
                 n = noise[i][j]
-                if n < 1 and n > -0.1 and self.mapmatrix[i][j] == 0:
-                    n = 1
-                    self.mapmatrix[i][j] = n
+                try:
+                    if n < 1 and n > -0.1 and self.mapmatrix[i][j] == 0:
+                        n = 1
+                        self.mapmatrix[i][j] = n
+                except:
+                    pass
 
-    def mapStructure(self):
+    def map_structure(self):
         checkTiles = [(-1, -1), (-1, 0), (0, -1), (1, 0),
                       (0, 1), (1, 1), (-1, 1), (1, -1)]
         for i in range(len(self.mapmatrix)):
@@ -57,46 +57,19 @@ class Map():
                             self.mapmatrix[i][j] = 1
                     except:
                         pass
-        for i in range(0, len(self.mapmatrix), len(self.mapmatrix) - 1):
-            for j in range(0, len(self.mapmatrix), len(self.mapmatrix[0]) - 1):
-                if self.mapmatrix[i][j] == 1:
-                    self.mapmatrix[i][j] = 2
 
-    def mapBuild(self):
-        i = 0
-        j = 0
+        for i in range(len(self.mapmatrix)):
+            for j in range(len(self.mapmatrix[0])):
+                try:
+                    if self.mapmatrix[i][j] == 1:
+                        self.mapmatrix[i][j] = 4
+                        break
+                except:
+                    pass
+            break
 
-        k = l = 0
-        while i < self.width - 1:
-            tile = Tile(self.tileset[self.mapmatrix[k][l]], (i, j))
-            tile.draw(self.surface)
-            while j < self.height - 1:
-                tile = Tile(self.tileset[self.mapmatrix[k][l]], (i, j))
-                tile.draw(self.surface)
-                l += 1
-                j += 64
-            l = 0
-            j = 0
-            k += 1
-            i += 64
-
-    def mapPrint(self):
-        for k in range(len(self.mapmatrix)):
-            for l in range(len(self.mapmatrix[0])):
-                print(self.mapmatrix[k][l], end="")
-            print()
-
-
-class Tile(pygame.sprite.Sprite):
-
-    def __init__(self, fpath, position=(0, 0)):
-        super().__init__()
-        self.image = pygame.image.load(os.path.join('assets', fpath))
-        self.surf = pygame.Surface((64, 64))
-        self.rect = self.surf.get_rect(x=position[0], y=position[1])
-
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
+    def map_to_file(self):
+        np.savetxt(self.fpath, self.mapmatrix, fmt="%.0f", delimiter='')
 
 
 def generate_perlin_noise_2d(shape, res):
@@ -105,8 +78,7 @@ def generate_perlin_noise_2d(shape, res):
 
     delta = (res[0] / shape[0], res[1] / shape[1])
     d = (shape[0] // res[0], shape[1] // res[1])
-    grid = np.mgrid[0:res[0]:delta[0], 0:res[1]
-        :delta[1]].transpose(1, 2, 0) % 1
+    grid = np.mgrid[0:res[0]:delta[0], 0:res[1]                    :delta[1]].transpose(1, 2, 0) % 1
     # Gradients
     angles = 2*np.pi*np.random.rand(res[0]+1, res[1]+1)
     gradients = np.dstack((np.cos(angles), np.sin(angles)))
