@@ -62,8 +62,8 @@ class Game:
         self.bullets = pg.sprite.Group()
         for row, tiles in enumerate(self.map.data):
             for col, tile in enumerate(tiles):
-                # if tile == '1':
-                #     Floor(self, col, row)
+                if tile == '0':
+                    Floor(self, col, row)
                 if tile == '2':
                     Wall(self, col, row)
                 if tile == '3':

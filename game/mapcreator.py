@@ -26,7 +26,7 @@ class MapGenerator():
             for j in range(len(noise[i])):
                 n = noise[i][j]
                 try:
-                    if n < 1 and n > -0.1 and self.mapmatrix[i][j] == 0:
+                    if n < 1 and n > -0.2 and self.mapmatrix[i][j] == 0:
                         n = 1
                         self.mapmatrix[i][j] = n
                 except:
