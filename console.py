@@ -14,7 +14,7 @@ def check():
         s = f.read()
    if (s == ""):
         return True
-    else:
+   else:
         return False
 
 
