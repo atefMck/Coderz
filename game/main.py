@@ -114,8 +114,8 @@ class Game:
             if isinstance(sprite, Mob):
                 sprite.draw_health()
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        draw_player_health(self.screen, 10, 10,
-                           self.player.health / PLAYER_HEALTH)
+        # draw_player_health(self.screen, 10, 10,
+        #                    self.player.health / PLAYER_HEALTH)
         pg.display.flip()
 
     def events(self):

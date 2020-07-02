@@ -66,6 +66,14 @@ body {
     height: 20px;
 }
 
+#coin {
+    width: 240px;
+    height: 280px;
+    position: absolute;
+    left: 20%;
+    top: 10%;
+}
+
 .mainbox ul li button{
     background-color: #f5426f; /* Green */
     border: none;

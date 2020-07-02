@@ -44,7 +44,11 @@ GUN_SPREAD = 5
 BULLET_DAMAGE = 10
 
 # Mob settings
+<<<<<<< HEAD
 MOB_IMG = 'zombie.png'
+=======
+MOB_IMG = 'enemy.png'
+>>>>>>> 23bd1f863913eb9f12d2d9fe56eedf704f71388b
 MOB_SPEED = 150
 MOB_HIT_RECT = pg.Rect(0, 0, 30, 30)
 MOB_HEALTH = 100
